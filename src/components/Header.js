@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 
 class Header extends Component {
@@ -11,6 +12,10 @@ class Header extends Component {
   }
 
   componentDidMount() {
+    this.getUserApi();
+  }
+
+  componentWillUnmount() {
     this.getUserApi();
   }
 
@@ -31,6 +36,14 @@ class Header extends Component {
         { loading
           ? <p>Carregando...</p>
           : <p data-testid="header-user-name">{ user }</p>}
+        <Link
+          to="/search"
+          data-testid="link-to-search"
+        >
+          Search
+        </Link>
+        <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
+        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
       </header>
     );
   }
