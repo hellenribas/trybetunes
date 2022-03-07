@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-// import { Route, Redirect } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 class Login extends Component {
   render() {
@@ -24,7 +24,7 @@ class Login extends Component {
             >
               Entrar
             </button>
-          </form>) : <h1>Carregando...</h1>}
+          </form>) : <Loading />}
       </div>
     );
   }
