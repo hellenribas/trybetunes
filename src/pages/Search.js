@@ -41,6 +41,7 @@ class Search extends Component {
       this.setState({
         data: [...arrData],
         loading: false,
+        isDesabledButton: true,
       });
     });
   }

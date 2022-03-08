@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
+import { addSong } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor() {
@@ -11,6 +12,7 @@ class Album extends Component {
     this.state = {
       data: [],
       loading: false,
+      loadingCheck: false,
     };
   }
 
@@ -23,17 +25,32 @@ class Album extends Component {
     const { id } = match.params;
     this.setState({ loading: true }, async () => {
       const request = await getMusics(id);
-      console.log(request);
       this.setState({ data: [...request], loading: false });
     });
   }
 
+  favoriteSong = ({ target }) => {
+    const { data } = this.state;
+    const dataSong = data.find((song) => Number(song.trackId) === Number(target.id));
+    this.setState({
+      loadingCheck: true,
+      [target.name.replaceAll(' ', '')]: true,
+    }, async () => {
+      if (target.checked) {
+        await addSong(dataSong);
+        this.setState({ loadingCheck: false });
+      }
+    });
+  }
+
   render() {
-    const { data, loading } = this.state;
+    const { data, loading, loadingCheck } = this.state;
+    const { state } = this;
+    console.log(this.props);
     return (
       <div data-testid="page-album">
         <Header />
-        {data.length === 0 || loading ? <Loading /> : (
+        {data.length === 0 || loading || loadingCheck ? <Loading /> : (
           <section>
             <p data-testid="artist-name">{data[0].artistName}</p>
             <p data-testid="album-name">{data[0].collectionName}</p>
@@ -45,6 +62,11 @@ class Album extends Component {
                   <MusicCard
                     trackName={ album.trackName }
                     previewUrl={ album.previewUrl }
+                    trackId={ album.trackId }
+                    data={ album }
+                    name={ album.trackName.replaceAll(' ', '') }
+                    favoriteSong={ this.favoriteSong }
+                    checkFav={ state[album.trackName.replaceAll(' ', '')] }
                   />
                 )}
               </section>))}
