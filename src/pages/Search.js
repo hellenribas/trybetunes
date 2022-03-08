@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import Loading from '../components/Loading';
 
 class Search extends Component {
   constructor() {
@@ -34,11 +35,11 @@ class Search extends Component {
   }
 
   searchAlbum = () => {
-    const { inputSearch, data } = this.state;
+    const { inputSearch } = this.state;
     this.setState({ result: inputSearch, inputSearch: '', loading: true }, async () => {
       const arrData = await searchAlbumsAPI(inputSearch);
       this.setState({
-        data: [...data, ...arrData],
+        data: [...arrData],
         loading: false,
       });
     });
@@ -49,7 +50,7 @@ class Search extends Component {
     return (
       <div data-testid="page-search">
         <Header />
-        { loading ? 'Carregando...' : (
+        { loading ? <Loading /> : (
           <form>
             <input
               type="text"
@@ -82,6 +83,7 @@ class Search extends Component {
                   <Link
                     to={ `/album/${album.collectionId}` }
                     data-testid={ `link-to-album-${album.collectionId}` }
+                    collectionid={ album.collectionId }
                   >
                     Album
                   </Link>
