@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
@@ -17,18 +17,20 @@ class MusicCard extends Component {
     this.getFavoriteSong();
   }
 
-  favoriteSong = ({ target }) => {
+  favoriteSong = (target) => {
+    const { data, previewUrl, trackId, trackName } = this.props;
     this.setState({ loadingCheck: true, checkFav: target.checked }, async () => {
-      await addSong(this.props);
+      await addSong({ data, previewUrl, trackId, trackName });
       this.setState({ loadingCheck: false });
     });
   }
 
   getFavoriteSong = () => {
+    console.log(this.props);
     const { trackName } = this.props;
     this.setState({ loadingCheck: true }, async () => {
       const songData = await getFavoriteSongs();
-      this.setState({ songsData: [songData], loadingCheck: false }, () => {
+      this.setState({ songsData: [...songData], loadingCheck: false }, () => {
         const { songsData } = this.state;
         songData.map((song) => {
           if (song.trackName.includes(trackName)) {
@@ -40,6 +42,29 @@ class MusicCard extends Component {
       });
     });
   }
+
+  removeSong = (target) => {
+    console.log('chegou');
+    const { data, previewUrl, trackId, trackName } = this.props;
+    this.setState({ loadingCheck: true, checkFav: target.checked }, async () => {
+      await removeSong({ data, previewUrl, trackId, trackName });
+      this.setState({ loadingCheck: false });
+    });
+  }
+
+  checkSong = ({ target }) => {
+    const { songsData } = this.state;
+    songsData.map((song) => {
+      if (Number(song.trackId) === Number(target.id)) {
+        console.log('entrou');
+        this.removeSong(target);
+      } else {
+        console.log('entrou2');
+        this.favoriteSong(target);
+      }
+      return true;
+    });
+  };
 
   render() {
     const { trackName, previewUrl, trackId } = this.props;
@@ -62,7 +87,7 @@ class MusicCard extends Component {
                 type="checkbox"
                 id={ trackId }
                 data-testid={ `checkbox-music-${trackId}` }
-                onChange={ this.favoriteSong }
+                onChange={ this.checkSong }
                 checked={ checkFav }
               />
             </label>
