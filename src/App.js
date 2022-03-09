@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    // this.requestApi();
+
   }
 
   handleState = ({ target }) => {
