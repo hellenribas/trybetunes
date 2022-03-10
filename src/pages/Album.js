@@ -48,17 +48,6 @@ class Album extends Component {
                     data={ data }
                   />
                 )}
-                {/* { album.trackName !== undefined && (
-                  <MusicCard
-                    trackName={ album.trackName }
-                    previewUrl={ album.previewUrl }
-                    trackId={ album.trackId }
-                    data={ album }
-                    name={ album.trackName.replaceAll(' ', '') }
-                    favoriteSong={ this.favoriteSong }
-                    checkFav={ state[album.trackName.replaceAll(' ', '')] }
-                  />
-                )} */}
               </section>))}
           </section>
         )}

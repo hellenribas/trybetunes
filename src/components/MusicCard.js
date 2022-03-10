@@ -17,12 +17,12 @@ class MusicCard extends Component {
     this.getFavoriteSong();
   }
 
-  favoriteSong = () => {
+  favoriteSong = async (target) => {
     const { data, previewUrl, trackId, trackName } = this.props;
-    this.setState({ loadingCheck: true }, async () => {
-      await addSong({ data, previewUrl, trackId, trackName });
-      this.setState({ loadingCheck: false, checkFav: true });
-    });
+
+    this.setState({ loadingCheck: true });
+    await addSong({ data, previewUrl, trackId, trackName });
+    this.setState({ loadingCheck: false, checkFav: target.checked });
   }
 
   getFavoriteSong = () => {
@@ -43,58 +43,55 @@ class MusicCard extends Component {
     });
   }
 
-  removeSong = (target) => {
-    const { data, previewUrl, trackId, trackName } = this.props;
-    this.setState({ loadingCheck: true, checkFav: target.checked }, async () => {
-      await removeSong({ data, previewUrl, trackId, trackName });
-      this.setState({ loadingCheck: false });
-    });
-  }
-
   checkSong = ({ target }) => {
-    const { songsData } = this.state;
-    if (songsData.length === 0) {
-      this.favoriteSong();
-    }
-    songsData.map((song) => {
-      if (Number(song.trackId) === Number(target.id)) {
-        this.removeSong(target);
+    const { checkFav } = this.state;
+    this.setState({ checkFav: target.checked }, () => {
+      if (!checkFav) {
+        this.favoriteSong(target);
       } else {
-        this.favoriteSong();
+        this.removeSong(target);
       }
-      return true;
     });
-  };
-
-  render() {
-    const { trackName, previewUrl, trackId } = this.props;
-    const { checkFav, loadingCheck } = this.state;
-    return (
-      <section>
-        { loadingCheck ? <Loading /> : (
-          <section>
-            <p>{ trackName }</p>
-            <audio data-testid="audio-component" src={ previewUrl } controls>
-              <track kind="captions" />
-              O seu navegador não suporta o elemento;
-              <code>audio</code>
-            </audio>
-            <label
-              htmlFor={ trackId }
-            >
-              Favorita
-              <input
-                type="checkbox"
-                id={ trackId }
-                data-testid={ `checkbox-music-${trackId}` }
-                onChange={ this.checkSong }
-                checked={ checkFav }
-              />
-            </label>
-          </section>)}
-      </section>
-    );
   }
+
+    removeSong = (target) => {
+      const { data, previewUrl, trackId, trackName } = this.props;
+      this.setState({ loadingCheck: true, checkFav: target.checked }, async () => {
+        await removeSong({ data, previewUrl, trackId, trackName });
+        this.setState({ loadingCheck: false });
+      });
+    }
+
+    render() {
+      const { trackName, previewUrl, trackId } = this.props;
+      const { checkFav, loadingCheck } = this.state;
+      return (
+        <section>
+          { loadingCheck ? <Loading /> : (
+            <section>
+              <p>{ trackName }</p>
+              <audio data-testid="audio-component" src={ previewUrl } controls>
+                <track kind="captions" />
+                O seu navegador não suporta o elemento;
+                <code>audio</code>
+              </audio>
+              <label
+                htmlFor={ trackId }
+              >
+                Favorita
+                <input
+                  type="checkbox"
+                  id={ trackId }
+                  data-testid={ `checkbox-music-${trackId}` }
+                  name="checkFav"
+                  onChange={ this.checkSong }
+                  checked={ checkFav }
+                />
+              </label>
+            </section>)}
+        </section>
+      );
+    }
 }
 
 MusicCard.propTypes = ({
