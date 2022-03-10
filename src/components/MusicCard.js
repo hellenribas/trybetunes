@@ -17,11 +17,11 @@ class MusicCard extends Component {
     this.getFavoriteSong();
   }
 
-  favoriteSong = (target) => {
+  favoriteSong = () => {
     const { data, previewUrl, trackId, trackName } = this.props;
-    this.setState({ loadingCheck: true, checkFav: target.checked }, async () => {
+    this.setState({ loadingCheck: true }, async () => {
       await addSong({ data, previewUrl, trackId, trackName });
-      this.setState({ loadingCheck: false });
+      this.setState({ loadingCheck: false, checkFav: true });
     });
   }
 
@@ -44,7 +44,6 @@ class MusicCard extends Component {
   }
 
   removeSong = (target) => {
-    console.log('chegou');
     const { data, previewUrl, trackId, trackName } = this.props;
     this.setState({ loadingCheck: true, checkFav: target.checked }, async () => {
       await removeSong({ data, previewUrl, trackId, trackName });
@@ -54,13 +53,14 @@ class MusicCard extends Component {
 
   checkSong = ({ target }) => {
     const { songsData } = this.state;
+    if (songsData.length === 0) {
+      this.favoriteSong();
+    }
     songsData.map((song) => {
       if (Number(song.trackId) === Number(target.id)) {
-        console.log('entrou');
         this.removeSong(target);
       } else {
-        console.log('entrou2');
-        this.favoriteSong(target);
+        this.favoriteSong();
       }
       return true;
     });
