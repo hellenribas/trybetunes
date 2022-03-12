@@ -53,6 +53,7 @@ class MusicCard extends Component {
 
     removeSong = (target) => {
       const { data, previewUrl, trackId, trackName, removeSongs } = this.props;
+      console.log(this.props);
       const propSong = this.props;
       this.setState({ loadingCheck: true, checkFav: target.checked }, async () => {
         await removeSong({ data, previewUrl, trackId, trackName });

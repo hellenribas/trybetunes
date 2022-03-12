@@ -12,6 +12,7 @@ class Favorites extends Component {
       songsData: [],
       loadingCheck: false,
     };
+    this.removeSongs = this.removeSongs.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class Favorites extends Component {
     });
   }
 
-  removeSongs = (obj) => {
+  removeSongs(obj) {
     const objSong = obj;
     if (objSong !== undefined) {
       const { data, previewUrl, trackId, trackName } = objSong;
@@ -55,11 +56,11 @@ class Favorites extends Component {
             <MusicCard
               pegaInfo={ pegaInfo }
               trackName={ album.trackName }
+              removeSongs={ this.removeSongs }
               previewUrl={ album.previewUrl }
               trackId={ album.trackId }
               data={ songsData }
               key={ album.trackId }
-              removeSongs={ this.removeSongs }
             />)))}
       </div>
     );

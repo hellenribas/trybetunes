@@ -49,6 +49,7 @@ class Album extends Component {
                     trackId={ album.trackId }
                     data={ data }
                     pegaInfo={ pegaInfo }
+                    removeSongs={ () => '' }
                   />
                 )}
               </section>))}

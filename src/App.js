@@ -50,7 +50,8 @@ class App extends React.Component {
   }
 
   pegaInfo = (datas) => {
-    this.setState({ data: datas });
+    const { data } = this.state;
+    this.setState({ data: [...data, datas] });
   }
 
   render() {
