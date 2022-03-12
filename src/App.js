@@ -54,7 +54,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isDesabled, inputName, loadingApi, redirect } = this.state;
+    const { isDesabled, inputName, loadingApi, redirect, data } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -85,6 +85,7 @@ class App extends React.Component {
               inputName={ inputName }
               requestApi={ this.requestApi }
               loadingApi={ loadingApi }
+              data={ data }
             />
             ) }
           >
