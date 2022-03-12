@@ -20,6 +20,7 @@ class Album extends Component {
 
   getMusicApi = () => {
     const { match } = this.props;
+    console.log(match);
     const { id } = match.params;
     this.setState({ loading: true }, async () => {
       const request = await getMusics(id);
@@ -29,6 +30,7 @@ class Album extends Component {
 
   render() {
     const { data, loading } = this.state;
+    const { pegaInfo } = this.props;
     return (
       <div data-testid="page-album">
         <Header />
@@ -46,6 +48,7 @@ class Album extends Component {
                     previewUrl={ album.previewUrl }
                     trackId={ album.trackId }
                     data={ data }
+                    pegaInfo={ pegaInfo }
                   />
                 )}
               </section>))}

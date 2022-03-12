@@ -17,11 +17,8 @@ class App extends React.Component {
       isDesabled: true,
       loadingApi: false,
       redirect: false,
+      data: [],
     };
-  }
-
-  componentDidUpdate() {
-
   }
 
   handleState = ({ target }) => {
@@ -52,14 +49,30 @@ class App extends React.Component {
     });
   }
 
+  pegaInfo = (datas) => {
+    this.setState({ data: datas });
+  }
+
   render() {
     const { isDesabled, inputName, loadingApi, redirect } = this.state;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/search" render={ () => <Search /> } />
-          <Route exact path="/album/:id" component={ Album } />
-          <Route exact path="/favorites" component={ Favorites } />
+          <Route
+            exact
+            path="/album/:id"
+            render={ (props) => <Album { ...props } pegaInfo={ this.pegaInfo } /> }
+          />
+          <Route
+            exact
+            path="/favorites"
+            render={ () => (
+              <Favorites
+                { ...this.props }
+                pegaInfo={ this.pegaInfo }
+              />) }
+          />
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/profile/edit" component={ ProfileEdit } />
           <Route
