@@ -32,7 +32,6 @@ class Favorites extends Component {
     this.setState({ loadingCheck: true }, async () => {
       const songData = await getFavoriteSongs();
       this.setState({ songsData: songData, loadingCheck: false });
-      console.log(songData);
       const { songsData } = this.state;
       pegaInfo(songsData);
     });

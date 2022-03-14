@@ -17,6 +17,10 @@ class Profile extends Component {
     this.userApi();
   }
 
+  componentWillUnmount() {
+    this.userApi();
+  }
+
   userApi = () => {
     this.setState({ loadingApi: true }, async () => {
       const user = await getUser();

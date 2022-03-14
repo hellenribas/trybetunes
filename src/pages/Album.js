@@ -18,9 +18,12 @@ class Album extends Component {
     this.getMusicApi();
   }
 
+  componentWillUnmount() {
+    this.getMusicApi();
+  }
+
   getMusicApi = () => {
     const { match } = this.props;
-    console.log(match);
     const { id } = match.params;
     this.setState({ loading: true }, async () => {
       const request = await getMusics(id);

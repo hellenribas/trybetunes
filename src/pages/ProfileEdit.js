@@ -52,7 +52,6 @@ class ProfileEdit extends Component {
       this.setState({ check: false });
     } else {
       this.setState({ check: true });
-      console.log(name, email, description, image);
     }
   }
 
