@@ -17,6 +17,10 @@ class MusicCard extends Component {
     this.getFavoriteSong();
   }
 
+  componentWillUnmount() {
+    this.getFavoriteSong();
+  }
+
   favoriteSong = async (target) => {
     const { data, previewUrl, trackId, trackName } = this.props;
     this.setState({ loadingCheck: true });

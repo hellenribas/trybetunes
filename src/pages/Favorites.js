@@ -23,6 +23,10 @@ class Favorites extends Component {
     this.removeSongs();
   }
 
+  componentWillUnmount() {
+    this.getFavoriteSongs();
+  }
+
   getFavoriteSongs = () => {
     const { pegaInfo } = this.props;
     this.setState({ loadingCheck: true }, async () => {
