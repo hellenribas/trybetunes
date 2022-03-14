@@ -31,7 +31,7 @@ class MusicCard extends Component {
   getFavoriteSong = async () => {
     const { trackName, pegaInfo } = this.props;
     const songData = await getFavoriteSongs();
-    this.setState({ songsData: [...songData], loadingCheck: false }, () => {
+    this.setState({ songsData: songData, loadingCheck: false }, () => {
       const { songsData } = this.state;
       pegaInfo(songsData);
       songData.map((song) => {
