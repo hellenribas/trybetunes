@@ -1,0 +1,47 @@
+.heart {
+  bottom: 5px;
+  color: aliceblue;
+  font-size: 35px;
+  left: 27px;
+  position: relative;
+}
+
+.heart-select {
+  bottom: 5px;
+  color: red;
+  font-size: 30px;
+  left: 27px;
+  position: relative;
+}
+
+.input-fav {
+  display: none;
+  font-size: 40px;
+  height: 30px;
+  width: 30px;
+}
+
+.main-musics {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.container-main-music {
+  display: flex;
+  width: 100%;
+}
+
+.music-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5% 0;
+  width: 100%;
+}
+
+.music-content p {
+  font-size: 20px;
+  width: 10%;
+}

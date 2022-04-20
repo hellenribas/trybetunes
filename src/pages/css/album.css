@@ -1,0 +1,85 @@
+.container-musics {
+  display: flex;
+  flex-direction: column;
+}
+
+.musics-main {
+  background-attachment: local;
+  background-color: #424245;
+  background-image: url('./images/background-search.jpg');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 35%;
+  display: flex;
+  flex-direction: column;
+  height: 200vh;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.musics-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.background {
+  align-items: center;
+  background-color: #42424592;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: center;
+
+}
+
+.footer-album {
+  justify-self: flex-end;
+}
+
+.background h2 {
+  font-size: 35px;
+}
+
+.img-collection {
+  height: 200px;
+  margin-bottom: 2%;
+  margin-top: 1%;
+  width: 200px;
+}
+
+.music-content {
+  background-color: #424245;
+  color: aliceblue;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #424245;
+  border: none;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: #1babff;
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-mute-button {
+  background-color: #b0b0b05f;
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  color: whitesmoke;
+}
+
+audio::-webkit-media-controls-time-remaining-display {
+  color: whitesmoke;
+
+}
+
+audio::-webkit-media-controls-timeline {
+  background-color: #d9d9d942;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

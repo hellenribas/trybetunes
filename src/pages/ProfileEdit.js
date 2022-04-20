@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
+import './css/profileEdit.css';
 import Loading from '../components/Loading';
 
 class ProfileEdit extends Component {
@@ -67,54 +68,72 @@ class ProfileEdit extends Component {
   render() {
     const { loading, description, email, image, name, check, redirect } = this.state;
     return (
-      <div data-testid="page-profile-edit">
+      <div data-testid="page-profile-edit" className="profile-edit-container">
         <Header />
         {loading ? <Loading /> : (
-          <section>
-            <form>
-              <input
-                data-testid="edit-input-name"
-                type="text"
-                value={ name }
-                name="name"
-                placeholder="Name"
-                onChange={ this.formChange }
-              />
-              <input
-                type="email"
-                data-testid="edit-input-email"
-                value={ email }
-                name="email"
-                placeholder="Email"
-                onChange={ this.formChange }
-              />
-              <textarea
-                data-testid="edit-input-description"
-                value={ description }
-                name="description"
-                placeholder="About"
-                onChange={ this.formChange }
-              />
-              <input
-                data-testid="edit-input-image"
-                value={ image }
-                placeholder="User Image"
-                name="image"
-                onChange={ this.formChange }
-              />
-              <button
-                type="button"
-                data-testid="edit-button-save"
-                disabled={ check }
-                onClick={ this.update }
-              >
-                salvar
-              </button>
+          <main className="main-edit-profile">
+            <form className="form-edit-profile">
+              <label htmlFor="name">
+                Nome:
+                <input
+                  data-testid="edit-input-name"
+                  type="text"
+                  value={ name }
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  onChange={ this.formChange }
+                />
+              </label>
+              <label htmlFor="email">
+                Email:
+                <input
+                  type="email"
+                  data-testid="edit-input-email"
+                  value={ email }
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  onChange={ this.formChange }
+                />
+              </label>
+              <label htmlFor="description">
+                Biografia:
+                <textarea
+                  data-testid="edit-input-description"
+                  value={ description }
+                  name="description"
+                  id="description"
+                  placeholder="Sobre Mim"
+                  onChange={ this.formChange }
+                />
+              </label>
+              <label htmlFor="image">
+                Foto de Perfil:
+                <input
+                  data-testid="edit-input-image"
+                  value={ image }
+                  placeholder="Url Imagem"
+                  name="image"
+                  id="image"
+                  onChange={ this.formChange }
+                />
+              </label>
+              <div className="button-save">
+                <button
+                  type="button"
+                  data-testid="edit-button-save"
+                  disabled={ check }
+                  onClick={ this.update }
+                >
+                  salvar
+                </button>
+              </div>
             </form>
             <div>
               { redirect && <Redirect to="/profile" /> }
             </div>
-          </section>
+          </main>
         )}
       </div>
     );

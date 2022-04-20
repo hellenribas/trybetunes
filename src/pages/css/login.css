@@ -1,0 +1,106 @@
+.container-login {
+  align-items: center;
+  background-attachment: fixed;
+  background-blend-mode: screen;
+  background-color: rgb(22, 21, 21);
+  background-image: url('./images/img-fundo.png');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.forms-login {
+  align-items: center;
+  background-color: #455e8960;
+  border-radius: 20px;
+  display: flex;
+  height: 50%;
+  justify-content: center;
+  width: 50%;
+}
+
+.user-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.forms-login .user-info input {
+  border: double #2e6f95;
+  border-radius: 20px;
+  color: #3a3b3b;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 400;
+  height: 28px;
+  margin-bottom: 2%;
+  margin-top: 1%;
+  text-align: center;
+  width: 230px;
+}
+
+.forms-login .user-info button {
+  background-color: #2e6f95a8;
+  color: white;
+  font-family: monospace;
+  font-size: 1rem;
+  padding: 6px;
+  transition-duration: 0.4s;
+}
+
+.forms-login .user-info button:disabled {
+  background-color: #2e6f958f;
+  color: white;
+  font-family: monospace;
+  font-size: 1rem;
+  padding: 6px;
+  transition-duration: 0.4s;
+}
+
+
+.forms-login .user-info button:active:hover {
+  background-color: #02a2c2;
+  color: white;
+  font-weight: 600;
+  transition-duration: 0.4s;
+}
+
+.forms-login .user-info button:disabled:hover {
+  background-color: #02a2c298;
+  color: rgba(255, 255, 255, 0.438);
+  font-weight: 600;
+}
+
+.user-info h2 {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.page-loading {
+  background-color: #02a2c2;
+}
+
+.loading {
+  animation: rotation 1s infinite;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: #51d4db;
+  height: 100px;
+  width: 100px;
+}
+
+@keyframes rotation {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}

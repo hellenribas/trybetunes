@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import { HiOutlineHeart } from 'react-icons/hi';
+import { FaHeart } from 'react-icons/fa';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
+import '../pages/css/music.css';
 
 class MusicCard extends Component {
   constructor() {
@@ -69,30 +72,32 @@ class MusicCard extends Component {
       const { trackName, previewUrl, trackId, songData } = this.props;
       const { checkFav, loadingCheck } = this.state;
       return (
-        <div>
-          <section>
-            { loadingCheck ? <Loading /> : (
-              <section>
-                <p>{ trackName }</p>
-                <audio data-testid="audio-component" src={ previewUrl } controls>
-                  <track kind="captions" />
-                  O seu navegador não suporta o elemento;
-                  <code>audio</code>
-                </audio>
-                <label
-                  htmlFor={ trackId }
-                >
-                  Favorita
-                  <input
-                    type="checkbox"
-                    id={ trackId }
-                    data-testid={ `checkbox-music-${trackId}` }
-                    name="checkFav"
-                    onChange={ this.checkSong }
-                    checked={ checkFav }
-                  />
-                </label>
-              </section>)}
+        <div className="main-musics">
+          <section className="container-main-music">
+            <section className="music-content">
+              <p>{ trackName }</p>
+              <audio data-testid="audio-component" src={ previewUrl } controls>
+                <track kind="captions" />
+                O seu navegador não suporta o elemento;
+                <code>audio</code>
+              </audio>
+              <label
+                htmlFor={ trackId }
+              >
+                { checkFav ? <FaHeart className="heart-select" />
+                  : <HiOutlineHeart className="heart" /> }
+
+                <input
+                  type="checkbox"
+                  id={ trackId }
+                  data-testid={ `checkbox-music-${trackId}` }
+                  name="checkFav"
+                  onChange={ this.checkSong }
+                  checked={ checkFav }
+                  className="input-fav"
+                />
+              </label>
+            </section>
           </section>
           { songData !== undefined && (
             <section>
@@ -115,6 +120,7 @@ class MusicCard extends Component {
                       name="checkFav"
                       onChange={ this.checkSong }
                       checked={ checkFav }
+                      className="heart"
                     />
                   </label>
                 </section>)}

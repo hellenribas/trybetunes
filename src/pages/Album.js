@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import Header from '../components/Header';
+import './css/album.css';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
@@ -33,30 +34,40 @@ class Album extends Component {
 
   render() {
     const { data, loading } = this.state;
-    const { pegaInfo } = this.props;
+    const { pegaInfo, url } = this.props;
+
     return (
-      <div data-testid="page-album">
-        <Header />
+      <div data-testid="page-album" className="container-musics">
+        <Header image={ url } />
         {data.length === 0 || loading ? <Loading /> : (
-          <section>
-            <p data-testid="artist-name">{data[0].artistName}</p>
-            <p data-testid="album-name">{data[0].collectionName}</p>
-            {data.map((album) => (
-              <section
-                key={ `${album.trackName} ${album.collectionId}` }
-              >
-                { album.trackName !== undefined && (
-                  <MusicCard
-                    trackName={ album.trackName }
-                    previewUrl={ album.previewUrl }
-                    trackId={ album.trackId }
-                    data={ data }
-                    pegaInfo={ pegaInfo }
-                    removeSongs={ () => '' }
-                  />
-                )}
-              </section>))}
-          </section>
+          <main className="musics-main">
+            <section className="background">
+              <h2>{data[0].artistName}</h2>
+              <img
+                src={ data[0].artworkUrl100 }
+                alt={ data[0].collectionName }
+                className="img-collection"
+              />
+            </section>
+            <section className="musics-container">
+              {data.map((album, index) => (
+                <section
+                  key={ `${album.trackName} ${album.collectionId}` }
+                  className={ `music-content music${index}` }
+                >
+                  { album.trackName !== undefined && (
+                    <MusicCard
+                      trackName={ album.trackName }
+                      previewUrl={ album.previewUrl }
+                      trackId={ album.trackId }
+                      data={ data }
+                      pegaInfo={ pegaInfo }
+                      removeSongs={ () => '' }
+                    />
+                  )}
+                </section>))}
+            </section>
+          </main>
         )}
       </div>
     );

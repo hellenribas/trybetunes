@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
+import './css/favorite.css';
 
 class Favorites extends Component {
   constructor() {
@@ -53,19 +54,24 @@ class Favorites extends Component {
     const { pegaInfo } = this.props;
     const { loadingCheck, songsData } = this.state;
     return (
-      <div data-testid="page-favorites">
+      <div data-testid="page-favorites" className="favorite-component">
         <Header />
         { loadingCheck ? <Loading /> : (
-          songsData.map((album) => (
-            <MusicCard
-              pegaInfo={ pegaInfo }
-              trackName={ album.trackName }
-              removeSongs={ this.removeSongs }
-              previewUrl={ album.previewUrl }
-              trackId={ album.trackId }
-              data={ songsData }
-              key={ album.trackId }
-            />)))}
+          <main className="main-favorites">
+            <h1>As Favoritas</h1>
+            {songsData.map((album) => (
+              <MusicCard
+                pegaInfo={ pegaInfo }
+                trackName={ album.trackName }
+                removeSongs={ this.removeSongs }
+                previewUrl={ album.previewUrl }
+                trackId={ album.trackId }
+                data={ songsData }
+                key={ album.trackId }
+              />
+            ))}
+          </main>
+        )}
       </div>
     );
   }

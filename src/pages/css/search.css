@@ -1,0 +1,201 @@
+@font-face {
+  font-family: sfcompact;
+  src: url('./fontes/SF-Mono.dmg');
+}
+
+.container-album-div {
+  height: 100vh;
+  width: 100vw;
+}
+
+.page-searchs {
+  background-attachment: scroll;
+  background-blend-mode: hard-light;
+  background-color: rgb(3, 13, 77);
+  background-image: url('images/music-apple.jpg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 60%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: initial;
+  font-family: 'sfcompact' monospace;
+  height: 200vh;
+}
+
+.forms {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+
+.forms input {
+  border: double #2e6f95;
+  border-radius: 20px;
+  color: #3a3b3b;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  width: 300px;
+}
+
+.forms button {
+  background-color: #2e6f95e7;
+  border-radius: 5px;
+  color: white;
+  font-family: 'sfcompact' monospace;
+  font-size: 1rem;
+  margin-left: 1%;
+  padding: 6px;
+  transition-duration: 0.4s;
+}
+
+.album-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.album-container p {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+.albums {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  height: 100vh;
+  justify-content: flex-start;
+  margin-left: 4%;
+  margin-top: 2%;
+}
+
+.album {
+  color: transparent;
+  height: 180px;
+  width: 140px;
+}
+
+.album img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+
+}
+
+.album h3, .album p, .album a {
+  align-items: center;
+  bottom: 120px;
+  justify-content: center;
+  left: 20px;
+  position: relative;
+  text-align: center;
+  width: 70%;
+}
+
+.album h3 {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.album p {
+  font-size: 10px;
+}
+
+.link-music {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 1%;
+}
+
+.album img:hover {
+  background-color: black;
+  opacity: 0.4;
+}
+
+.album h3:hover, .album p:hover, .album a:hover, .album:hover, .link-music {
+  color: aliceblue;
+  text-decoration: none;
+  font-family: 'sfcompact' monospace;
+}
+
+.experience {
+  background-color: #3a3b3b4a;
+  color: aliceblue;
+  font-size: 4rem;
+  font-weight: 600;
+  margin-top: 10%;
+  padding: 10%;
+  text-align: center;
+}
+
+.result-search {
+  align-items: center;
+  color: aliceblue;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+}
+
+.loading-container {
+  align-items: center;
+  display: flex;
+  height: 120vh;
+  justify-content: center;
+}
+
+.video-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.video-container h2 {
+  background-color: #2e6f954b;
+  border-radius: 30px 10px;
+  bottom: 34%;
+  color: white;
+  font-size: 120px;
+  padding: 1% 10%;
+  position: absolute;
+  right: 8%;
+}
+
+.life-music {
+  background-color: #2e6f954b;
+  border-radius: 30px 10px;
+  color: aliceblue;
+  font-size: 120px;
+  margin-top: 28%;
+  padding: 3% 10%;
+  text-align: center;
+}
+
+[ data-anima ] {
+  color: white;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+[ data-anima = 'esquerda' ] {
+  transform: translate3d(0, 0, 0);
+}
+
+[ data-anima = 'direita' ] {
+  transform: translate3d(30px, 0, 0);
+}
+
+[ data-anima = 'centro' ] {
+  transform: translate3d(0, 50px, 0);
+}
+
+[ data-anima ].animacao {
+  opacity: 1;
+  transform: translate(0, 0, 0);
+}

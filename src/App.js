@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import NotFound from './pages/NotFound';
 import { createUser } from './services/userAPI';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
@@ -63,7 +64,10 @@ class App extends React.Component {
           <Route
             exact
             path="/album/:id"
-            render={ (props) => <Album { ...props } pegaInfo={ this.pegaInfo } /> }
+            render={ (props) => (<Album
+              { ...props }
+              pegaInfo={ this.pegaInfo }
+            />) }
           />
           <Route
             exact
@@ -75,7 +79,13 @@ class App extends React.Component {
               />) }
           />
           <Route exact path="/profile" component={ Profile } />
-          <Route exact path="/profile/edit" component={ ProfileEdit } />
+          <Route
+            exact
+            path="/profile/edit"
+            render={
+              () => <ProfileEdit />
+            }
+          />
           <Route
             exact
             path="/"

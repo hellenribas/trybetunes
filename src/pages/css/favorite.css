@@ -1,0 +1,23 @@
+.favorite-component {
+  background-color: #424245;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+  width: 100vw;
+}
+
+.main-favorites {
+  align-items: center;
+  border-top: solid  1px rgb(162, 162, 162);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+.main-favorites h1 {
+  color: aliceblue;
+  margin: 2%;
+  margin-top: 40px;
+}

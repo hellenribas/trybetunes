@@ -1,0 +1,62 @@
+@font-face {
+  font-family: sfcompact;
+  src: url('./fontes/SF-Mono.dmg');
+}
+
+.header {
+  background-color: #424245;
+  display: flex;
+  font-family: 'sfcompact' monospace;
+  justify-content: space-between;
+  padding: 1%;
+  width: 100vw;
+}
+
+.header img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.links {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 7%;
+  width: 80%;
+}
+
+.link {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.link:hover {
+  border-top: 1px groove white;
+  color: rgba(116, 172, 245, 0.849);
+}
+
+.user-container {
+  color: white;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-around;
+  margin-right: 2%;
+  width: 5%;
+}
+
+.user {
+  margin-left: 10%;
+}
+
+.user-icon {
+  color: rgba(0, 110, 255, 0.658);
+  font-size: 25px;
+}
+
+.user p {
+  border: solid red;
+  margin: 1%;
+}
